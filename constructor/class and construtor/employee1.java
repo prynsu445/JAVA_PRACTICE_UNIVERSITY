@@ -56,7 +56,7 @@ class Employee {
     }
 }
 
-public class Employee1 {
+public class employee1 {
     public static void main(String[] args) {
 
         Employee e1 = new Employee("Amit", 201, 25, 8);
