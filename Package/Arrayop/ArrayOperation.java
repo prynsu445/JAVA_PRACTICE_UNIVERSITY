@@ -6,29 +6,26 @@ public class ArrayOperation {
     int size = 0;
 
     public void insert(int value) {
-        arr[size] = value;
-        size++;
+        arr[size++] = value;
     }
 
     public void insertAtPosition(int value, int pos) {
-        for(int i=size; i>pos; i--) {
+        for(int i=size; i>pos; i--)
             arr[i] = arr[i-1];
-        }
+
         arr[pos] = value;
         size++;
     }
 
     public void deleteAtPosition(int pos) {
-        for(int i=pos; i<size-1; i++) {
+        for(int i=pos; i<size-1; i++)
             arr[i] = arr[i+1];
-        }
+
         size--;
     }
 
     public void display() {
-        for(int i=0;i<size;i++) {
+        for(int i=0;i<size;i++)
             System.out.print(arr[i] + " ");
-        }
-        System.out.println();
     }
 }
