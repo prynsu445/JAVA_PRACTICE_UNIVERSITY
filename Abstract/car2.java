@@ -22,7 +22,7 @@ class Motorcycle extends Vehicle {
     }
 }
 
-class Codechef {
+class car2 {
     public static void main(String[] args) {
 
         Vehicle myVehicle = new Vehicle();
