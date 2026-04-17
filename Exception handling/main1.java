@@ -1,3 +1,13 @@
+/*Concepts involved
+
+Thread creation (extends Thread)
+Thread lifecycle (New → Runnable → Running → Waiting)
+sleep() method
+Deprecated methods (suspend(), resume())
+Synchronization (wait() / notify())
+Exception handling (InterruptedException)*/
+
+
 import java.io.*;
 
 class MyThread extends Thread {
