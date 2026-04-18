@@ -59,7 +59,7 @@ class MyThread extends Thread {
 
 }
 
-class GFG {
+class main1{
 
     public static void main(String[] args) {
 
