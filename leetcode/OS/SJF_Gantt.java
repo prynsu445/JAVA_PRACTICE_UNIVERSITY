@@ -12,7 +12,7 @@ class Process {
     }
 }
 
-public class SJF_Scheduling {
+public class SJF_Gantt {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -22,34 +22,34 @@ public class SJF_Scheduling {
 
         Process[] p = new Process[n];
 
-        // Input burst times
+        // Input
         for (int i = 0; i < n; i++) {
-            System.out.print("Enter burst time for process " + (i + 1) + ": ");
+            System.out.print("Enter burst time for P" + (i + 1) + ": ");
             int bt = sc.nextInt();
             p[i] = new Process(i + 1, bt);
         }
 
-        // Sort processes based on burst time
+        // Sort by burst time (SJF)
         Arrays.sort(p, Comparator.comparingInt(proc -> proc.burstTime));
 
-        // Calculate waiting time
+        // Calculate Waiting Time
         p[0].waitingTime = 0;
         for (int i = 1; i < n; i++) {
             p[i].waitingTime = p[i - 1].waitingTime + p[i - 1].burstTime;
         }
 
-        // Calculate turnaround time
+        // Calculate Turnaround Time
         for (int i = 0; i < n; i++) {
             p[i].turnaroundTime = p[i].waitingTime + p[i].burstTime;
         }
 
-        // Display result
+        // Display Table
         System.out.println("\nPID\tBT\tWT\tTAT");
 
         double totalWT = 0, totalTAT = 0;
 
         for (Process proc : p) {
-            System.out.println(proc.pid + "\t" + proc.burstTime + "\t" +
+            System.out.println("P" + proc.pid + "\t" + proc.burstTime + "\t" +
                     proc.waitingTime + "\t" + proc.turnaroundTime);
 
             totalWT += proc.waitingTime;
@@ -58,6 +58,39 @@ public class SJF_Scheduling {
 
         System.out.println("\nAverage Waiting Time = " + (totalWT / n));
         System.out.println("Average Turnaround Time = " + (totalTAT / n));
+
+        // ---------------- GANTT CHART ----------------
+        System.out.println("\nGantt Chart:");
+
+        // Top bar
+        System.out.print(" ");
+        for (int i = 0; i < n; i++) {
+            System.out.print("----");
+        }
+        System.out.println();
+
+        // Process IDs
+        System.out.print("|");
+        for (int i = 0; i < n; i++) {
+            System.out.print(" P" + p[i].pid + " |");
+        }
+        System.out.println();
+
+        // Bottom bar
+        System.out.print(" ");
+        for (int i = 0; i < n; i++) {
+            System.out.print("----");
+        }
+        System.out.println();
+
+        // Time line
+        int time = 0;
+        System.out.print("0");
+        for (int i = 0; i < n; i++) {
+            time += p[i].burstTime;
+            System.out.print("    " + time);
+        }
+        System.out.println();
 
         sc.close();
     }
